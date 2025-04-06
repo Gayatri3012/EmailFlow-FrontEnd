@@ -35,6 +35,11 @@
     font-weight: 400;
 }
 
+.demologinLink{
+    margin: 10px;
+    font-size: 18px;
+    font-weight: 400;
+}
 
 .AuthForm{
     margin-top: 20px;
@@ -99,6 +104,19 @@
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
+.demoNote {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #666;
+    line-height: 1.5;
+}
+.demoNote code {
+    background-color: #f4f4f4;
+    padding: 2px 4px;
+    border-radius: 4px;
+    font-family: monospace;
+}
+
 .lineWithText{
     width: 60%;
     display: flex;
@@ -135,6 +153,11 @@
         font-size: 16px;                                    
     }
     
+    .demologinLink{
+        font-size: 14px;
+    }
+    
+
     .AuthForm input{
         padding: 0.7rem 0.5rem;
         font-size: 14px;
@@ -162,6 +185,11 @@
         font-size: 16px;                                    
     }
     
+    .demologinLink{
+        margin: 8px;
+        font-size: 14px;
+    }
+
     .AuthForm input{
         padding: 0.7rem 0.5rem;
         font-size: 14px;

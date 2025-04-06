@@ -65,9 +65,21 @@ const LoginForm = () => {
                 />
             <label>Password</label>
             {errors.password && <p className={styles.errorText}>{errors.password}</p>}
-            <input ref={password} type="password" name="password" required className={errors.password ? styles.error : ""} />
+            <input ref={password} 
+                type="password" name="password" 
+                required 
+                className={errors.password ? styles.error : ""} 
+            />
             <button type='submit'>Login</button>
         </form>
+
+        {/* Demo credentials note */}
+        <div className={styles.demoNote}>
+            <p><strong>Demo credentials:</strong></p>
+            <p>Email: <code>demo@email.com</code></p>
+            <p>Password: <code>demoPassword</code></p>
+        </div>
+
 
         {/* Divider and Google login */}
         <div className={styles.lineWithText}>

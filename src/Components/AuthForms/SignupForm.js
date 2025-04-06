@@ -51,6 +51,7 @@ const SignupForm = () => {
     <section className={styles.FormAndOAuth}>
         <p className={styles.FormName}>Create an account</p>
         <p className={styles.LinkToLogin}>Already have an account? <a href='/login'>Log in</a></p>
+        <p className={styles.demologinLink}>Demo login is available on the <a href="/login">Login</a> page.</p>
 
         {/* Signup form */}
         <form className={styles.AuthForm} onSubmit={(e) => handleSignup(e)}>
