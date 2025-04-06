@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { login } from "../../store/authSlice";
@@ -8,6 +8,8 @@ const GoogleSignInButton = () => {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const [googleButtonLoaded , setGoogleButtonLoaded] = useState(false)
 
    // Callback function to handle Google credential response
   const handleCredentialResponse = (response) => {
@@ -48,6 +50,7 @@ const GoogleSignInButton = () => {
         document.getElementById('googleSignInButton'),
         { theme: 'outline', size: 'large' }
       );
+      setGoogleButtonLoaded(true);
     } else {
           console.error("Google API not loaded");
         }
@@ -56,7 +59,11 @@ const GoogleSignInButton = () => {
   return ( 
     <span>
         {/* This is the placeholder div where Google button will render */}
-         <div id="googleSignInButton"></div>
+        {!googleButtonLoaded ? (
+          <div>Loading Google Login...</div>
+        ) : (
+          <div id="googleSignInButton"></div>
+        )}
     </span>)
 }
 
