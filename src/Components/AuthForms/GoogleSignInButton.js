@@ -48,7 +48,6 @@ const GoogleSignInButton = () => {
       };
       script.onerror = (error) => {
         console.error('Google API script failed to load:', error);
-        toast.error('Google API script failed to load!');
       };
       document.body.appendChild(script);
     };
