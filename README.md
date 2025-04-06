@@ -12,7 +12,7 @@ This is the **frontend** of the EmailFlow application — a drag-and-drop tool t
 
 ## 🖼️ Screenshots
 <!-- Add actual image links if available -->
-![Flow Builder](/app-screenshot.png)
+![Flow Builder](public/app-screenshot.png)
 
 ---
 
