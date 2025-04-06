@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { login } from "../../store/authSlice";
-import { toast } from 'react-toastify';
 
 const GoogleSignInButton = () => {
 
@@ -77,7 +76,7 @@ const GoogleSignInButton = () => {
     } else {
           console.error("Google API not loaded");
         }
-  }, [handleCredentialResponse]);
+  }, [handleCredentialResponse, scriptLoaded]);
       
   return ( 
     <span>

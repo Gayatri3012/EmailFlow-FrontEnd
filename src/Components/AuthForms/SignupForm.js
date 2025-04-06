@@ -2,7 +2,6 @@ import { useRef, useState } from 'react';
 import styles from '../../styles/Auth.module.css';
 import GoogleSignInButton from './GoogleSignInButton';
 import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
 
 const SignupForm = () => {
 
@@ -56,7 +55,7 @@ const SignupForm = () => {
         {/* Signup form */}
         <form className={styles.AuthForm} onSubmit={(e) => handleSignup(e)}>
             <label>Full Name</label>
-            <input type='text' ref={fullName} required  />
+            <input type='text' ref={fullName} required  minLength={2} />
             <label>Email</label>
             {errors.email && <p className={styles.errorText}>{errors.email}</p>}
             <input type='email' ref={email} required className={errors.email ? styles.error : ""}/>

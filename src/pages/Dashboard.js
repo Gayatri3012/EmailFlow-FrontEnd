@@ -3,7 +3,6 @@ import styles from '../styles/Dashboard.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../store/authSlice';
 import { useEffect, useState } from 'react';
-import { toast } from 'react-toastify';
 
 const Dashboard = () => {
     const { user } = useSelector((state) => state.auth);

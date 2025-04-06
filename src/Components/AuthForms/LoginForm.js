@@ -4,7 +4,6 @@ import GoogleSignInButton from './GoogleSignInButton';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { login } from "../../store/authSlice";
-import { toast } from 'react-toastify';
 
 const LoginForm = () => {
 
