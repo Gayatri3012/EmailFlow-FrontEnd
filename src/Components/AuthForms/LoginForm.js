@@ -40,12 +40,12 @@ const LoginForm = () => {
             }
 
             // If login successful, dispatch user to Redux and navigate
-            toast.success('Login Successful!')
+            // toast.success('Login Successful!')
             dispatch(login(data));
             navigate('/dashboard'); 
         })
         .catch((err) => {
-            toast.error('Login Failed!')
+            // toast.error('Login Failed!')
             console.error('Login failed:', err)
         });
     }

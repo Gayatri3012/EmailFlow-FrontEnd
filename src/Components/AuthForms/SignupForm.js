@@ -37,11 +37,11 @@ const SignupForm = () => {
                 setErrors({ [data.error]: data.message });
                 return;
             }
-            toast.success('Signup Successful!')
+            // toast.success('Signup Successful!')
             navigate('/login'); 
         })
         .catch((err) => {
-            toast.error('Signup Failed!')
+            // toast.error('Signup Failed!')
             console.error('Signup failed:', err)
         });
 
