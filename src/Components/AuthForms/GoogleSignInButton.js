@@ -10,6 +10,7 @@ const GoogleSignInButton = () => {
   const dispatch = useDispatch();
 
   const [googleButtonLoaded , setGoogleButtonLoaded] = useState(false)
+  const [scriptLoaded, setScriptLoaded] = useState(false) // Track if the Google API script is loaded
 
    // Callback function to handle Google credential response
   const handleCredentialResponse = (response) => {
@@ -36,10 +37,33 @@ const GoogleSignInButton = () => {
 
   };
 
+    // Load Google API script dynamically
+    const loadGoogleScript = () => {
+      const script = document.createElement('script');
+      script.src = 'https://accounts.google.com/gsi/client';
+      script.async = true;
+      script.defer = true;
+      script.onload = () => {
+        setScriptLoaded(true);
+      };
+      script.onerror = (error) => {
+        console.error('Google API script failed to load:', error);
+        toast.error('Google API script failed to load!');
+      };
+      document.body.appendChild(script);
+    };
+
   // Initialize Google Sign-In button on component mount
   useEffect(() => {
-    if (window.google && window.google.accounts) {
-      window.google.accounts.id.initialize({
+
+      // If script is not loaded, load it
+      if (!scriptLoaded) {
+        loadGoogleScript();
+      }
+  
+      // Initialize Google Sign-In button once the script is loaded
+      if (scriptLoaded &&window.google && window.google.accounts) {
+        window.google.accounts.id.initialize({
         client_id: process.env.REACT_APP_CLIENT_ID,
         callback: handleCredentialResponse,
       });
