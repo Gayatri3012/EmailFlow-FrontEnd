@@ -24,12 +24,12 @@ const GoogleSignInButton = () => {
     })
     .then((data) => {
       // console.log('User authenticated:', data);
-      toast.success('Sign in Successful')
+      // toast.success('Sign in Successful')
       dispatch(login(data));  // Save user data to Redux store
       navigate('/dashboard')  // Redirect to dashboard
     })
     .catch((err) => {
-      toast.error('Authentication Failed!')
+      // toast.error('Authentication Failed!')
       console.error('Authentication failed:', err)});
 
   };
