@@ -6,7 +6,7 @@ This is the **frontend** of the EmailFlow application — a drag-and-drop tool t
 ---
 
 ## 🌐 Live Demo
-👉 [View the Live App](https://your-deployment-link.com) 
+👉 [View the Live App](https://email-flow-front-end.vercel.app/) 
 
 ---
 
