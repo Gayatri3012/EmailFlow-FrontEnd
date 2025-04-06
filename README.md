@@ -1,7 +1,7 @@
 
 # 📬 EmailFlow Frontend
 
-This is the **frontend** of the EmailFlow application — a drag-and-drop tool to design, connect, and schedule automated email sequences visually.
+This is the **frontend** of the EmailFlow application — a tool to design, connect, and schedule automated email sequences visually.
 
 ---
 
