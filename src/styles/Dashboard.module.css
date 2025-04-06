@@ -1,0 +1,130 @@
+.Dashboard{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    /* gap: 20px; */
+}
+
+.pageHeader{
+    width: 100%;
+    padding: 1rem;
+    display: flex;
+    justify-self: flex-start;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.pageNameDiv{
+    display: flex;
+    justify-self: flex-start;
+    justify-content: center;
+    gap: 1rem;
+    align-items: center;
+}
+
+.pageNameDiv p{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.pageNameDiv img{
+    width: 3rem;
+}
+
+.pageHeader button{
+
+    background-color: #055C9D;
+    padding: 8px 12px;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.pageContent{
+    width: 100%;
+    padding: 1rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 2rem;
+}
+
+.welcomeText{
+    width: 100%;
+}
+
+.welcomeUser{
+    font-size: 2rem;
+    font-weight: 600;
+    padding: 1rem 0;
+}
+
+.subtitle {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 20px;
+}
+  
+.CreateFlowchartButton{
+    background-color: #0E86D4;
+    padding: 8px 12px;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.flowchartListContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.listName{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.listName img{
+    width: 50px;
+    height: 50px;
+}
+
+.listName p{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+
+.flowchartList{
+    /* list-style: none; */
+    padding: 0 2rem;
+}
+
+.flowchartTitle{
+    font-size: 16px;
+    font-weight: 500;
+    transition: all 0.3s ease-in-out;
+}
+
+.flowchartTitle:hover{
+    text-decoration: underline;
+}
+
+.CreateFlowchartButton:hover, .pageHeader button:hover{
+    transform: translateY(-3px);
+    /* font-weight: 600; */
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
