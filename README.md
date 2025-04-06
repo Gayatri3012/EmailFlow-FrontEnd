@@ -122,20 +122,6 @@ Google OAuth is used for login/signup. Upon successful login, JWT token and user
 
 ---
 
-## 🧪 Testing
-
-Basic unit and component tests:
-
-- `App.test.js`
-- `setupTests.js`
-
-Run tests with:
-
-```bash
-npm test
-```
-
----
 
 ## ⚠️ Known Issues
 
