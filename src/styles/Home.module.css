@@ -3,10 +3,12 @@
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    gap: 20px;
+    gap: 3rem;
     background-color:rgb(244, 244, 244);
+    /* background-color:rgb(255, 255, 255); */
+    overflow-y: auto;
 }
 
 .logo{
@@ -15,6 +17,7 @@
 }
 
 .LogoAndName{
+    margin-top: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -28,8 +31,24 @@
 }
 
 .textContent{
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
     padding: 0 1rem;
     text-align: center;
+}
+
+.contentContainer{
+    padding: 2rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    font-size: 18px;
+    font-weight: 500;
 }
 
 .HomePage a{
@@ -58,27 +77,139 @@
     /* border: 1px solid rgb(197, 197, 197); */
     border-radius: 16px;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-    max-width: 50%;
+    max-width: 40%;
     height: auto;
     transition: all 0.3s ease-in-out;
 }
+
 
 .appScreenshot:hover{
     box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
 }
 
+.featuresWrapper {
+    position: relative;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 100%;
+    /* background: #f9f9f9; */
+}
+  
+.scrollTrack {
+    display: inline-flex;
+    gap: 2rem;
+    white-space: nowrap;
+    animation: scrollLeft 40s linear infinite;
+}
+
+.featuresWrapper::before,
+.featuresWrapper::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 100px;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.featuresWrapper::before {
+  left: 0;
+  background: linear-gradient(to right, rgb(244, 244, 244), transparent);
+}
+
+.featuresWrapper::after {
+  right: 0;
+  background: linear-gradient(to left, rgb(244, 244, 244), transparent);
+}
+
+.scrollItem {
+    display: inline-flex;       
+    align-items: center;       
+    gap: 0.8rem;                    
+    padding: 1rem;
+    font-size: 16px;
+    color: rgb(0, 35, 105);
+}
+
+  
+@keyframes scrollLeft {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+}
+  
 @media (min-width:769px) and (max-width: 1024px){
+    .HomePage{
+        gap: 0.5rem;
+    }
+    .LogoAndName p{
+        font-size: 24px;
+    }
+    .logo{
+        width: 4rem;
+        height: 4rem;
+    }
     .appScreenshot{
-        max-width: 70%;
+        max-width: 60%;
         height: auto;
     }
-
+    .contentContainer{
+        flex-direction: column;
+    }
+    .LogoAndName{
+        margin-top: 0px;
+    }
+    
+    .textContent{
+        width: 80%;
+    }
 }
 
 @media (max-width: 768px) { 
+    .HomePage{
+        gap: 1rem;
+        justify-content: center;
+  
+    }
+    .LogoAndName p{
+        font-size: 22px;
+    }
+    .logo{
+        width: 3rem;
+        height: 3rem;
+    }
     .appScreenshot{
         max-width: 90%;
         height: auto;
     }
-
+    .LogoAndName{
+        margin-top: 0px;
+    }
+    
+    .contentContainer{
+        flex-direction: column;
+        padding: 1rem 0;
+        gap: 1rem;
+        font-size: 14px;
+    }
+    .textContent{
+        width: 90%;
+    }
+    .scrollItem {
+        display: inline-flex;       
+        align-items: center;       
+        gap: 0.5rem;                    
+        padding: 0.5rem;
+        font-size: 14px;
+        color: #333;
+    }
+    
+    .scrollItem svg{
+        width: 28px;
+        height: 28px;
+    }
 }

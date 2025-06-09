@@ -5,13 +5,17 @@ import '@xyflow/react/dist/style.css';
 
 import Sidebar from './Sidebar';
 import styles from '../../styles/flowchart.module.css'
-import { ColdEmailNode, DelayNode, LeadSourceNode } from './CustomNode';
-import NodeModal from "./NodeModal";
+import ColdEmailNode from "../CustomNodes/ColdEmailNode";
+import LeadSourceNode from "../CustomNodes/LeadSourceNode";
+import DelayNode from "../CustomNodes/DelayNode";
+import NodeModal from "../Modals/NodeModal";
 import { v4 as uuidv4 } from 'uuid';
 import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { validateFlowchart } from "../../utils/validateFlowchart";
 import { toast } from "react-toastify";
+import { ChevronDown, Rocket, Save, Sparkles } from "lucide-react";
+import AskAIModal from "../Modals/AskAIModal";
 
 // Initial flowchart with a single Lead Source node
 const initialNodes = [
@@ -35,13 +39,16 @@ const FlowchartBuilder = () => {
   const [nodes, setNodes] = useState(initialNodes);
   const [edges, setEdges] = useState([]);
   const [flowchartTitle, setFlowchartTitle] = useState('Untitled')
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isNodeModalOpen, setIsNodeModalOpen] = useState(false);
+  const [isAIModalOpen, setIsAIModalOpen] = useState(false);
   const [selectedNode, setSelectedNode] = useState(null);
+  const [showDropdown, setShowDropdown] = useState(false)
 
   // Load existing flowchart if editing
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (id) {
+      // fetch(`http://localhost:8080/emailFlow/flowchart/${id}`, {
       fetch(`https://emailflow-backend.onrender.com/emailFlow/flowchart/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       })
@@ -60,13 +67,13 @@ const FlowchartBuilder = () => {
   const nodeTypes = useMemo(
     () => ({
       coldEmail: (props) => (
-        <ColdEmailNode {...props} setSelectedNode={setSelectedNode} setIsModalOpen={setIsModalOpen} removeNode={handleRemoveNode} />
+        <ColdEmailNode {...props} setSelectedNode={setSelectedNode} setIsModalOpen={setIsNodeModalOpen} removeNode={handleRemoveNode} />
       ), 
       delay: (props) => (
-        <DelayNode {...props} setSelectedNode={setSelectedNode} setIsModalOpen={setIsModalOpen} removeNode={handleRemoveNode} />
+        <DelayNode {...props} setSelectedNode={setSelectedNode} setIsModalOpen={setIsNodeModalOpen} removeNode={handleRemoveNode} />
       ),
       leadSource: (props) => (
-        <LeadSourceNode {...props} setSelectedNode={setSelectedNode} setIsModalOpen={setIsModalOpen}  />
+        <LeadSourceNode {...props} setSelectedNode={setSelectedNode} setIsModalOpen={setIsNodeModalOpen}  />
       ),
     }),
     []
@@ -128,7 +135,7 @@ const FlowchartBuilder = () => {
       }
     })
 
-    setIsModalOpen(false);
+    setIsNodeModalOpen(false);
   };
 
   // Remove a node and reconnect edges if possible
@@ -167,7 +174,7 @@ const FlowchartBuilder = () => {
   // Trigger modal to add a node with selected type
   const openModalToAddNode = (type) => {
     setSelectedNode({ id: uuidv4(), type, data: {} });
-    setIsModalOpen(true);
+    setIsNodeModalOpen(true);
   };
 
   // ReactFlow handlers
@@ -186,31 +193,43 @@ const FlowchartBuilder = () => {
   );
 
   // Save flowchart to backend & schedule
-  const handleSaveFlowchart = async() => {
+  const handleSaveFlowchart = async(option) => {
     const token = localStorage.getItem("token");
     const userId = user._id
 
     if (!validateFlowchart(nodes, edges, flowchartTitle)) return;
 
+
     try {
       const response = await fetch("https://emailflow-backend.onrender.com/emailFlow/flowchart", {
+        // const response = await fetch(`http://localhost:8080/emailFlow/flowchart`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           "Authorization": `Bearer ${token}`
         },
-        body: JSON.stringify({ nodes, edges , userId, title:flowchartTitle, flowchartId: id}),
+        body: JSON.stringify({ option, nodes, edges , userId, title:flowchartTitle, flowchartId: id}),
       });
       const data = await response.json();
       if (response.ok) {
-        toast.success('Flowchart saved!', {
-          position: "top-right",
-          autoClose: 3000,
-          hideProgressBar: false,
-        })
+        if(option === 'save'){ 
+          toast.success('Flowchart saved!', {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+          })
+        } else {
+          toast.success('Flowchart saved and scheduled!', {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+          })
+        }
         navigate('/dashboard'); 
       } else {
-        toast.error(`Failed to save: ${data.error}`)
+        option === 'save' 
+        ? toast.error(`Failed to save: ${data.error}`) 
+        : toast.error(`Failed to save and schedule: ${data.error}`)
       }
       return;
     } catch (error) {
@@ -231,7 +250,7 @@ const FlowchartBuilder = () => {
     />
 
     {/* Flowchart area */}
-    <div className={styles.FlowchartContainer} style={{ width: "100%", height: "100vh" }}>
+    <div   className={styles.FlowchartContainer} style={{ width: "100%", height: "100vh" }}>
       <ReactFlow 
         nodes={nodes}
         edges={edges}
@@ -241,33 +260,67 @@ const FlowchartBuilder = () => {
         nodeTypes={nodeTypes}
         fitView
       >
-      {/* MiniMap & Controls */}
-      <MiniMap  nodeColor={(node) => {
-        if (node.type === 'coldEmail') return '#e3c5ff ';
-        if (node.type === 'delay') return '#bcdefc';
-        return '#fbd7e5';
-      }} 
-      />
+        {/* MiniMap & Controls */}
+        <MiniMap id="react-flow-minimap" nodeColor={(node) => {
+            if (node.type === 'coldEmail') return '#e3c5ff ';
+            if (node.type === 'delay') return '#bcdefc';
+            return '#fbd7e5';
+          }} 
+        />
         <Background/>
         <Controls />
       </ReactFlow>
     </div>
 
     {/* Node modal for add/edit */}
-    {isModalOpen && (
+    {isNodeModalOpen && (
         <NodeModal
-          isOpen={isModalOpen}
-          onClose={() => setIsModalOpen(false)}
+          isOpen={isNodeModalOpen}
+          onClose={() => setIsNodeModalOpen(false)}
           onSave={handleSaveNode}
           // nodeType={selectedNode.type}
           selectedNode={selectedNode}
         />
     )}
 
-    {/* Save & Schedule button */}
-    <div className={styles.saveButtonContainer}>
-        <button onClick={handleSaveFlowchart}> <img src="/save.png" alt="save " />Save & Schedule</button>
-    </div>
+    {isAIModalOpen && (
+        <AskAIModal
+          isOpen={isAIModalOpen}
+          onClose={() => setIsAIModalOpen(false)}
+        />
+    )}
+
+    {/* Ask AI button */}
+    <div className={styles.ButtonContainer}>
+        <button className={styles.aiButton} onClick={() => setIsAIModalOpen(true)}> 
+          <span className={styles.iconWrapper}><Sparkles size={18}/></span>
+          Ask AI
+        </button>
+        {/* <button onClick={handleSaveFlowchart}> <Save size={18}/>Save & Schedule</button> */}
+   
+
+    <div className={styles.dropdownWrapper}>
+        <button
+          className={styles.dropdownButton}
+          onClick={() => setShowDropdown((prev) => !prev)}
+        >
+           Save Options <ChevronDown />
+        </button>
+
+        {showDropdown && (
+          <div className={styles.dropdownMenu}>
+            <div onClick={() => handleSaveFlowchart("save")}>
+              <span className={styles.iconWrapper}><Save size={20}/></span>
+              Save Only
+            </div>
+            <div onClick={() => handleSaveFlowchart("saveAndSchedule")}>
+              <span className={styles.iconWrapper}><Rocket size={22} /></span>
+              Save & Schedule
+            </div>
+          </div>
+        )}
+      </div>
+      </div>
   </div>
   
   );

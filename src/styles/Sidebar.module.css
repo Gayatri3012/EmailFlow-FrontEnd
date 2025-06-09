@@ -1,0 +1,116 @@
+
+.sidebar{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    min-width: 200px;
+    max-width: 250px;
+    height: 100%;
+    padding:2rem 1rem;
+    background-color:rgb(247, 248, 250);
+    background-color: #f8f7ff;
+}
+
+.sidebar button{
+    padding: 8px 12px;
+    background-color: #1890ff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.sidebar button:hover{
+    transform: translateY(-3px);
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.backButton{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.backIconWrapper {
+    display: inline-block;
+    transition: transform 0.3s ease;
+  }
+
+.backButton:hover .backIconWrapper {
+    transform: translateX(-4px);
+}
+
+.sidebar p{
+    padding: 1rem 0;
+    font-size: 14px;
+}
+
+.sidebar label{
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.sidebar input{
+    width: 100%;
+    padding: 8px;
+    margin: 10px 0;
+    border-radius: 4px;
+    font-size: 14px;
+    border: 1px solid rgb(189, 189, 189);
+    transition: border 0.3s ease-in-out;
+}
+  
+.sidebar input:hover{
+    border: 1px solid rgb(71, 70, 70);
+}
+
+.toggleButton {
+    display: none;
+}
+
+
+@media (max-width: 768px) {
+    .sidebar {
+        padding-top: 4rem;
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        z-index: 10;
+        transform: translateX(-100%);
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        transition: all 0.3s ease;
+    }
+  
+    .open {
+        opacity: 1;
+      transform: translateX(0);
+      pointer-events: auto;
+    }
+  
+    .closed {
+        pointer-events: none;  
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+  
+    .toggleButton {
+        display: block;
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      z-index: 11;
+      background: #ffffff;
+      padding: 8px;
+      border: none;
+      cursor: pointer;
+      border-radius: 4px;
+      box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    }
+  }

@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
-import styles from '../../styles/flowchart.module.css'
+import styles from '../../styles/Sidebar.module.css'
 import { useState } from 'react';
+import { ChevronLeft } from 'lucide-react';
 
 const Sidebar = ({addNode, setTitle, flowchartTitle}) => {
   
@@ -25,10 +26,11 @@ const Sidebar = ({addNode, setTitle, flowchartTitle}) => {
         </button>
         
         {/* Sidebar content */}
-        <div className={`${styles.sidebar} ${sidebarVisible ? styles.open : styles.closed}`}>
+        <div className={`${styles.sidebar} ${sidebarVisible ? styles.open : styles.closed}` } aria-hidden={!sidebarVisible}>
 
             {/* Navigation to go back to dashboard */}
             <button onClick={() => navigate("/dashboard")} className={styles.backButton}>
+                <span className={styles.backIconWrapper}><ChevronLeft  size={15}/></span>
                 Back to Dashboard
             </button>
             
@@ -43,6 +45,7 @@ const Sidebar = ({addNode, setTitle, flowchartTitle}) => {
                     value={flowchartTitle}
                     onChange={(e) => setTitle(e.target.value)}
                     placeholder="Enter Flowchart Title"
+                    maxLength={60}
                 />
             </div>
 

@@ -1,6 +1,6 @@
 .CustomNode{
     max-width: 300px;
-    padding: 1rem;
+    padding: 1rem ;
     border-radius: 8px;
     background-color: #fff;
     border: 1px solid #ddd;
@@ -8,6 +8,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    text-align: left;
     gap: 0.5rem;
 }
 
@@ -43,6 +44,10 @@
 .CustomNode p{
     font-size: 14px;
     align-self: flex-start;
+    max-width: 200px; 
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .buttonContainer{
@@ -51,15 +56,23 @@
 }
 
 .buttonContainer button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     padding: 4px 12px;
-    background-color: #0E86D4;
+    background-color: #1890ff;
     gap: 5px;
     color: white;
     border-radius: 4px;
     border: none;
     cursor: pointer;
     font-size: 14px;
-    transition: all 0.2s ease-in-out;
+    transition: all 0.3s ease;
+}
+  
+.buttonContainer button:hover{
+    background-color:#096dd9;
+    /* box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; */
 }
 
 
@@ -69,9 +82,4 @@
     text-overflow: ellipsis;
     white-space: pre-wrap;
     word-break: break-word;
-}
-
-.buttonContainer button:hover{
-    background-color:#0675ca;
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }

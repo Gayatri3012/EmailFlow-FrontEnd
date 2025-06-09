@@ -45,6 +45,7 @@ input, button {
 
 ::-webkit-scrollbar-track {
   background: #ded3f6;
+  background: rgb(208, 223, 241);
   border-radius: 8px;
   margin: 1rem 0;
 
@@ -53,11 +54,11 @@ input, button {
 
 ::-webkit-scrollbar-thumb {
   background: rgb(119, 174, 239);
-  background-color: #8071a0;
+  /* background-color: #8071a0; */
   border-radius: 8px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
   background: rgb(87, 154, 236);
-  background: #614899;
+  /* background: #614899; */
 }

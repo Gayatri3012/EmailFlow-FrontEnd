@@ -12,6 +12,8 @@
     "@testing-library/user-event": "^13.5.0",
     "@xyflow/react": "^12.5.1",
     "cra-template": "1.2.0",
+    "html2canvas": "^1.4.1",
+    "lucide-react": "^0.510.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-flow": "^1.0.3",

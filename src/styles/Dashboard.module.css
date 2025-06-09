@@ -6,6 +6,7 @@
     /* justify-content: center; */
     align-items: center;
     /* gap: 20px; */
+    overflow: auto;
 }
 
 .pageHeader{
@@ -15,6 +16,9 @@
     justify-self: flex-start;
     justify-content: space-between;
     align-items: center;
+    position: fixed;
+    background-color:  #f8f7ff;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
 .pageNameDiv{
@@ -36,7 +40,7 @@
 
 .pageHeader button{
 
-    background-color: #055C9D;
+    background-color: #096dd9;
     padding: 8px 12px;
     color: white;
     border: none;
@@ -47,6 +51,7 @@
 }
 
 .pageContent{
+    margin-top: 80px;
     width: 100%;
     padding: 1rem 2rem;
     display: flex;
@@ -54,6 +59,7 @@
     justify-content: flex-start;
     align-items: center;
     gap: 2rem;
+
 }
 
 .welcomeText{
@@ -73,7 +79,7 @@
 }
   
 .CreateFlowchartButton{
-    background-color: #0E86D4;
+    background-color: #1890ff;
     padding: 8px 12px;
     color: white;
     border: none;
@@ -84,9 +90,10 @@
 }
 
 .flowchartListContainer{
+    margin-top: 50px;
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 2rem;
 }
 
 .listName{
@@ -108,18 +115,18 @@
 
 
 .flowchartList{
-    /* list-style: none; */
+    list-style: none;
     padding: 0 2rem;
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    gap: 1.5rem;
+    flex-wrap: wrap;
 }
 
 .flowchartTitle{
     font-size: 16px;
     font-weight: 500;
-    transition: all 0.3s ease-in-out;
-}
-
-.flowchartTitle:hover{
-    text-decoration: underline;
 }
 
 .CreateFlowchartButton:hover, .pageHeader button:hover{
@@ -128,3 +135,167 @@
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
+
+.flowchartCard {
+    /* max-width: 300px; */
+    min-width: 250px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 16px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    background-color: #fff;
+    transition: all 0.2s ease;
+  }
+  
+.flowchartCard:hover {
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+    border: 1px solid #c3c3c3;
+}
+.spinner{
+    animation: spin 1s linear infinite;
+    vertical-align: middle;
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }  
+
+  
+.cardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+.cardHeader h3{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 60%;
+}
+  
+.statusBadge {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+  
+.statusBadge.saved {
+    background-color: #e0f0ff;
+    color: #007bff;
+}
+  
+.statusBadge.scheduled {
+    background-color: #fff0dc;
+    color: #fa8100;
+}
+  
+.statusBadge.completed {
+    background-color: #f6ffed;
+    color: #52c41a;
+}
+  
+.createdDate {
+    text-align: left;
+    font-size: 12px;
+    color: #888;
+    margin: 8px 0;
+}
+  
+.editBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 6px 12px;
+    background-color: #1890ff;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+  
+.editBtn:hover {
+    background-color: #096dd9;
+}
+
+
+
+@media (max-width: 768px) { 
+  
+    .welcomeUser{
+        font-size: 1.5rem;
+    }
+
+    .subtitle {
+        font-size: 14px;
+    }
+
+    .pageNameDiv{
+        gap: 0.5rem;
+    }
+      
+    .pageContent{
+        padding: 1rem 2rem;
+        gap: 1rem;
+    }
+        
+    .CreateFlowchartButton{
+        padding: 6px 12px;
+        border-radius: 8px;
+        font-size: 16px;
+    }
+
+    .flowchartListContainer{
+        margin-top: 30px;
+    }
+
+    .listName img{
+        width: 40px;
+        height: 40px;
+    }
+
+    .listName p{
+        font-size: 18px;
+    }
+
+    .flowchartList{
+        padding: 0 1rem;
+        gap: 1.2rem;
+    }
+
+    .flowchartTitle{
+        font-size: 14px;
+    }
+    
+    .statusBadge {
+        font-size: 10px;
+    }
+    
+    .createdDate {
+        font-size: 10px;
+    }
+    
+    .flowchartCard {
+        /* max-width: 300px; */
+        min-width: 250px;
+        width: 250px;
+        padding: 10px;
+        margin-bottom: 0px;
+      }
+
+}

@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Modal from "react-modal";
 import styles from "../../styles/nodeModal.module.css";
+import ColdEmailForm from "./ColdEmailForm";
+import DelayForm from "./DelayForm";
+import LeadSourceForm from "./LeadSourceForm";
 
 // For accessibility: tell React Modal where the app's root is
 Modal.setAppElement("#root"); 
@@ -23,6 +26,7 @@ const NodeModal = ({ isOpen, onClose, onSave, selectedNode  }) => {
 
     // Form data state for input fields
     const [formData, setFormData] = useState(getDefaultFormData(selectedNode?.type || ""));
+ 
 
     // When selectedNode changes, update form data (used when editing an existing node)
     useEffect(() => {
@@ -35,6 +39,7 @@ const NodeModal = ({ isOpen, onClose, onSave, selectedNode  }) => {
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
+
 
     // When user clicks Save
     const handleSubmit = (e) => {
@@ -57,80 +62,25 @@ const NodeModal = ({ isOpen, onClose, onSave, selectedNode  }) => {
             {selectedNode?.type === "coldEmail" ? "Cold Email Node" : selectedNode?.type === "delay" ? "Wait/Delay Node" : "Lead Source Node"}
         </h2>
         
-        <form onSubmit={handleSubmit}>
+        <form className={styles.modalForm} onSubmit={handleSubmit}>
 
             {/* Cold Email form inputs */}
-            {selectedNode?.type === "coldEmail" && (
-                <>
-                    <label>
-                        Email Address:
-                        <input
-                            type="email"
-                            name="emailAddress"
-                            value={formData.emailAddress ?? ""}
-                            onChange={handleChange}
-                            required
-                        />
-                    </label>
-                    <label>
-                        Subject:
-                        <input
-                            type="text"
-                            name="subject"
-                            value={formData.subject ?? ""}
-                            onChange={handleChange}
-                            required
-                        />
-                    </label>
-                    <label>
-                        Body:
-                        <textarea
-                            name="body"
-                            value={formData.body ?? ""}
-                            onChange={handleChange}
-                            required
-                        />
-                    </label>
-                </>
-            )}
+            {selectedNode?.type === "coldEmail" && <ColdEmailForm formData={formData} setFormData={setFormData} />}
 
             {/* Delay Node input */}
-            {selectedNode?.type === "delay" && (
-                <label>
-                    Duration (in hours):
-                    <input
-                        type="number"
-                        name="delayTime"
-                        value={formData.delayTime ?? ""}
-                        onChange={handleChange}
-                        required
-                    />
-                </label>
-            )}
+            {selectedNode?.type === "delay" && <DelayForm formData={formData} handleChange={handleChange} />}
 
             {/* Lead Source Node input */}
-            {selectedNode?.type === "leadSource" && (
-                <>
-                    <label>
-                        Source Name:
-                        <input
-                            type="text"
-                            name="leadSource"
-                            value={formData.leadSource ?? ""}
-                            onChange={handleChange}
-                            required
-                        />
-                    </label>
-                </>
-            )}
+            {selectedNode?.type === "leadSource" && <LeadSourceForm formData={formData} handleChange={handleChange} />}
 
             {/* Save / Cancel buttons */}
             <div className={styles.modalButtons}>
-            <button type="submit" className={styles.saveButton}>
-                Save
-            </button>
+          
             <button type="button" onClick={onClose} className={styles.cancelButton}>
                 Cancel
+            </button>
+            <button type="submit" className={styles.saveButton}>
+                Save
             </button>
             </div>
         </form>

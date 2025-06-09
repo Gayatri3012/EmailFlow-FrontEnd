@@ -9,70 +9,18 @@
     border: 1px solid #ccc;
 }
 
-.sidebar{
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    min-width: 200px;
-    max-width: 250px;
-    height: 100%;
-    padding:2rem 1rem;
-    background-color:rgb(247, 248, 250);
-}
 
-.sidebar button{
-    padding: 8px 12px;
-    background-color:#055C9D;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: all 0.2s ease-in-out;
-}
-
-.sidebar button:hover{
-    background-color:#0675ca;
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-}
-
-.sidebar p{
-    padding: 1rem 0;
-    font-size: 14px;
-}
-
-.sidebar label{
-    display: block;
-    font-size: 14px;
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 5px;
-}
-
-.sidebar input{
-    width: 100%;
-    padding: 8px;
-    margin: 10px 0;
-    border-radius: 4px;
-    font-size: 14px;
-    border: 1px solid rgb(189, 189, 189);
-    transition: border 0.3s ease-in-out;
-}
-  
-.sidebar input:hover{
-    border: 1px solid rgb(71, 70, 70);
-}
-
-
-.saveButtonContainer{
+.ButtonContainer{
     position: absolute;
     top: 1rem;
     right: 1rem;
+    display: flex;
+    gap: 0.5rem
 }
 
-.saveButtonContainer button{
+.ButtonContainer button{
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     gap:5px;
     padding: 8px 12px;
@@ -85,46 +33,74 @@
     transition: all 0.2s ease-in-out;
 }
 
-.saveButtonContainer button:hover{
+.aiButton{
+    background-image: linear-gradient( 69.2deg,  rgba(77,143,251,1) 35.3%, rgba(202,51,255,1) 100.3% );
+}
+
+.aiButton:hover{
+    background-image: linear-gradient( 69.2deg,  rgba(77,143,251,1) 15.3%, rgba(202,51,255,1) 100.3% );
+}
+
+.iconWrapper {
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+  
+.aiButton:hover .iconWrapper {
+    transform: rotate(-20deg) scale(1.1);
+}
+  
+
+.ButtonContainer button:hover{
     background-color:  #055b9ddf;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
-.toggleButton {
-    display: none;
+.dropdownMenu div:hover .iconWrapper {
+    transform: translateY(-2px) scale(1.05);
 }
+  
 
-@media (max-width: 768px) {
-    .sidebar {
-        padding-top: 4rem;
-        position: absolute;
-        top: 0;
-        left: 0;
-        height: 100%;
-        z-index: 10;
-        transform: translateX(-100%);
-        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-    }
+
+.dropdownWrapper {
+    position: relative;
+}
   
-    .open {
-      transform: translateX(0);
-    }
+.dropdownButton {
+    background-color: #4CAF50;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    cursor: pointer;
+}
   
-    .closed {
-      transform: translateX(-100%);
-    }
+.dropdownMenu {
+    width: 100%;
+    margin-top: 10px;
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ddd;
+    box-shadow: 0 6px 8px rgba(0,0,0,0.1);
+    z-index: 10;
+    right: 0;
+    top: 100%;
+    border-radius: 4px;
+}
   
-    .toggleButton {
-        display: block;
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      z-index: 11;
-      background: #ffffff;
-      padding: 8px;
-      border: none;
-      cursor: pointer;
-      border-radius: 4px;
-      box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-    }
+  .dropdownMenu div {
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 8px 12px;
+    margin: 4px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.2s ease-in-out;
   }
+  
+  .dropdownMenu div:hover {
+    background-color: #f1f1f1de;
+  }
+  
+
