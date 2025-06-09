@@ -1,7 +1,7 @@
 
 # 📬 EmailFlow Frontend
 
-This is the **frontend** of the EmailFlow application — a drag-and-drop tool to design, connect, and schedule automated email sequences visually.
+This is the **frontend** of the EmailFlow application — a tool to design, connect, and schedule automated email sequences visually.
 
 ---
 
@@ -122,20 +122,6 @@ Google OAuth is used for login/signup. Upon successful login, JWT token and user
 
 ---
 
-## 🧪 Testing
-
-Basic unit and component tests:
-
-- `App.test.js`
-- `setupTests.js`
-
-Run tests with:
-
-```bash
-npm test
-```
-
----
 
 ## ⚠️ Known Issues
 
