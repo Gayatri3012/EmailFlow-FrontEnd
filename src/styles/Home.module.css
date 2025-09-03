@@ -5,7 +5,7 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    gap: 3rem;
+    gap: 1rem;
     background-color:rgb(244, 244, 244);
     /* background-color:rgb(255, 255, 255); */
     overflow-y: auto;
@@ -17,7 +17,7 @@
 }
 
 .LogoAndName{
-    margin-top: 50px;
+    margin-top: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
